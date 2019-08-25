@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5pRpFQodtlRy6knGSG5wq1fiaECSCi7I">></script>
+	
+	<script src="js/ajax-lib.js"></script> 
+   	<script src="js/lib.js"></script> 
+   	<script src="js/rou_performance.js"></script> 
+    <script src="js/jquery-1.3.2.min.js"></script>
+	<script src="js/gdl_routes.js"></script> 
+	<script>
+var latlang = '';
+var count = 0;
+function initialize() {
+	
+  var myLatLng = new google.maps.LatLng(-25.363882, 131.044922);
+  var mapOptions = {
+    zoom: 4,
+    center: myLatLng
+  };
+
+  var map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+
+  var infowindow = new google.maps.InfoWindow({
+    content: 'please select the start point',
+    position: myLatLng
+  });
+  infowindow.open(map);
+
+  google.maps.event.addListener(map, 'click', function(event) {
+	 latlang = event.latLng;
+	 count++;
+     placeMarker(event.latLng);
+  });
+  
+  function placeMarker(location) {
+	if(count == 1) {
+		 console.log(location);
+    var marker = new google.maps.Marker({
+        position: location, 
+        map: map
+    });
+	
+	}}
+	 
+	
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+ </script>
+
+ <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+</head>
+<body>
+ <div id="map-canvas" style="height: 50%;width: 50%;"></div>
+
+    <table id="login">
+	  <tr>
+	   <td><h1> access</h1></td>
+	  </tr>
+	    <tr>
+		   <td><input type="text" name="" id="usernametest"/></td>
+	    </tr>
+		<tr>
+		   <td><input type="password" name="" id="passwordtest"/></td>
+	    </tr>
+		<tr>
+			<td> <input type="button" name="submit" value="enter" onclick="loginTest()" /></td>
+			<td></td>
+		</tr>
+    </table>
+	<table id="text_"></table>
+	<table id="process_input" style="display:none">
+		     <tr>
+			    <td><label>Route size (distance between co-ord)</label></td>
+				<td> : </td>
+			    <td><input type="text" id="distance"></input></td>
+			 </tr>
+			 <tr>
+			    <td><label>Iterations</label></td>
+				<td> : </td>
+			    <td><input type="text" id="iterations"></input></td>
+			 </tr>
+			 <tr>
+			    <td><label>No of points on each route</label></td>
+				<td> : </td>
+			    <td><input type="text" id="points"></input></td>
+			 </tr>
+			 <tr>
+			    <td></td>
+				<td></td>
+			    <td><input type="button" value="start test" onclick="start_route_performance();"/></td>
+			 </tr>
+		 </table>
+	<div id="data_here" style="display:none">
+	     
+	  
+		<!--<h2> Welcome to performance Rotue test </h2>
+		<table> 
+		    <tr>
+				<td>Route ID : <input type="text" id="route_id"/> </td>
+				<td>Route name : <input type="text" id="route_name"/> </td>
+		    </tr>
+			<tr><td id="getPromoType_time"></td></tr>			  
+             <tr> <td id="setPromoType_time"></td></tr>			  
+             <tr> <td id="sendNewRoute_time"></td></tr>
+             <tr> <td id="getRouInf_time"></td></tr>
+             <tr> <td id="getRouPoints_time"></td></tr>
+             <tr> <td id="getMsgRou_time"></td></tr>
+             <tr> <td id="getPromRou_time"></td></tr>
+             <tr> <td id="getPromInf_time"></td></tr>
+            </table>
+			<table>
+		    <tr>
+				<td> <B>getRouInf </B></td>
+				<td><textarea rows="4" cols="50" type="text" id="getRouInf"></textarea></td>
+			</tr>
+			<tr>
+				<td> <B>getRouPoints</B></td>
+				<td><textarea rows="4" cols="80" type="text" id="getRouPoints"></textarea></td>
+			</tr>
+			
+			<tr>
+				<td> <B>getMsgRou</B></td>
+				<td><textarea rows="4" cols="80" type="text" id="getMsgRou"></textarea></td>
+			</tr>
+			<tr>
+				<td> <B>getPromRou</B></td>
+				<td><textarea rows="4" cols="80" type="text" id="getPromRou"></textarea></td>
+			</tr>
+			<tr>
+				<td> <B>getPromInf</B></td>
+				<td><textarea rows="4" cols="80" type="text" id="getPromInf"></textarea></td>
+			</tr>
+		</table> -->
+	</div> 
+</body>
+</html>
